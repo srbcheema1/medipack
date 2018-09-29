@@ -4,7 +4,7 @@ from setuptools import setup
 
 import medipack
 
-with open("extra/README.md", 'r') as f:
+with open("README.md", 'r') as f:
     long_description = f.read()
 
 with open('requirements.txt', 'r') as f:
@@ -27,8 +27,9 @@ setup(
     name='medipack',
     version=medipack.__version__,
     description='A command line tool for media editing',
-    license="MIT",
+    license='MIT License',
     long_description=long_description,
+    long_description_content_type="text/markdown",
     author='Sarbjit Singh',
     author_email='srbcheema1@gmail.com',
     url="http://github.com/srbcheema1/medipack",
@@ -39,4 +40,9 @@ setup(
     entry_points={
         'console_scripts': ['medipack=medipack.main:main']
     },
+    classifiers=[
+        'Operating System :: POSIX :: Linux',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.5',
+    ],
 )
