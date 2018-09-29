@@ -11,7 +11,7 @@ class Time:
         if(len(st)>3):
             return None
 
-        if(not _is_int(h) or not _is_int(m)):
+        if(not Time._is_int(h) or not Time._is_int(m)):
             return None
         h = int(h)
         m = int(m)

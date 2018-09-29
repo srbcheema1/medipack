@@ -3,7 +3,7 @@ import subprocess as sp
 
 from .srbColour import Colour
 
-class Medipack:
+class Meditor:
     def getLength(filename):
         result = sp.Popen(["ffprobe", filename],
             stdout = sp.PIPE, stderr = sp.STDOUT)
