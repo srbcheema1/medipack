@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 from setuptools import setup
 
 import medipack
@@ -8,6 +9,20 @@ with open("extra/README.md", 'r') as f:
 
 with open('requirements.txt', 'r') as f:
     requirements = [line.strip() for line in f.readlines()]
+
+def line_adder(filename, line):
+    with open(filename, 'r+') as f:
+        content = f.read()
+        f.seek(0, 0)
+        lines = [x.strip() for x in f.readlines()]
+        if(not line in lines):
+            f.seek(0, 0)
+            f.write(content + '\n' + line + '\n')
+
+line = 'eval "$(register-python-argcomplete medipack)"'
+filename = os.environ['HOME'] + '/.bashrc'
+line_adder(filename,line)
+
 setup(
     name='medipack',
     version=medipack.__version__,
