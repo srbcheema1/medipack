@@ -12,13 +12,15 @@ class Util:
         if(not parser.action == 'crop'):
             return filters
 
-        crop_args = {}
-        crop_args['width'] = str(parser.width/100)
-        crop_args['height'] = str(parser.height/100)
-        crop_args['x_point'] = str(parser.x_point/100)
-        crop_args['y_point'] = str(parser.y_point/100)
+        Args.validate_crop_args(parser)
 
-        Args.validate_crop_args(crop_args)
+        crop_args = {}
+
+        crop_args['x_point'] = str(parser.left/100)
+        crop_args['y_point'] = str(parser.top/100)
+
+        crop_args['width'] = str(1- (parser.left/100) - (parser.right/100))
+        crop_args['height'] = str(1 - (parser.top/100) - (parser.right/100))
 
         filters = ' -filter:v "crop=in_w*'+crop_args['width']+':in_h*'+crop_args['height']+ \
             ':in_w*'+crop_args['x_point']+':in_h*'+crop_args['y_point']+'" '
@@ -101,11 +103,3 @@ class Util:
         '''
         resizer = ' -crf ' + str(qual) + ' '
         return resizer
-
-    def verify_dependencies():
-        try:
-            sp.call(['ffmpeg','--help'],stdout=sp.PIPE,stderr=sp.STDOUT)
-        except:
-            Colour.print('Please install ffmpeg',Colour.RED)
-            sys.exit(0)
-

@@ -7,6 +7,7 @@ from .lib.args import Args
 from .lib.meditor import Meditor
 from .lib.srbColour import Colour
 from .lib.util import Util
+from .dependencies.dependency import install_dependencies
 
 '''
 run it as:
@@ -23,9 +24,22 @@ for audio, please specify output name using -o and extension should be mp3
     medipack inp.mp4 trim -s 0:30 -e 1:40 -o output.mp3
 '''
 
+
+dependency_map = {
+    'register-python-argcomplete':{
+        'ubuntu':'sudo apt install python-argcomplete',
+    },
+    'ffmpeg':{
+        'ubuntu':'sudo apt install ffmpeg',
+    },
+}
+
 def main():
-    Util.verify_dependencies()
     parser = Args.get_parser()
+    if(not install_dependencies(dependency_map)):
+        print('please install the required dependencies')
+        sys.exit(0)
+
     inp,out = Util.get_io(parser)
 
     # audio

@@ -15,12 +15,12 @@ Medipack is `Media + Package`, A command-line tool used to `trim`, `crop`, `resi
 
 - `git clone https://github.com/srbcheema1/medipack`
 - `cd medipack`
-- `python3 setup.py install`
+- `sudo python3 setup.py install`
 
 #### Build from Source
 
 ```
-sudo pip3 install --user medipack
+sudo python3 -m pip install --user medipack
 
 ```
 
@@ -80,23 +80,23 @@ medipack input.mp3 -s 01:04 -e 14:08 -o output.mp3
 
 - To crop the bottom right quarter of a video window
 ```
-medipack input.mp4 crop -x 50 -y 50 -w 50 -l 50 -o output.mp4
-medipack input.mp4 crop -x 50 -y 50 -w 50 -l 50
+medipack input.mp4 crop -t 50 -l 50 -o output.mp4
+medipack input.mp4 crop -t 50 -l 50
 ```
 
 - To crop away top 10% of area
 ```
-medipack input.mp4 crop -y 10 -l 90 -o output.mp4
+medipack input.mp4 crop -t 10 -o output.mp4
 ```
 
 - To crop away right 20% of the area
 ```
-medipack input.mp4 crop -l 90 -o output.mp4
+medipack input.mp4 crop -r 20 -o output.mp4
 ```
 
 - To crop away top 10% of area and right 20% of the area
 ```
-medipack input.mp4 crop -y 10 -w 80 -l 90 -o output.mp4
+medipack input.mp4 crop -t 10 -r 20 -o output.mp4
 ```
 
 #### resize

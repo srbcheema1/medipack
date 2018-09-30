@@ -21,7 +21,7 @@ class Meditor:
         Colour.print(exec_command,Colour.GREEN)
         os.system(exec_command)
 
-    def video_cropper(inp,trimmer,out):
+    def video_cropper(inp,filters,out):
         video_codec = "" # senseless to say 'crop video and copy video, both at same time'
         audio_codec =  " -c:a copy "
         exec_command = 'ffmpeg -i ' + str(inp) + filters + video_codec + audio_codec + out
