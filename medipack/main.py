@@ -3,6 +3,7 @@
 
 import sys
 
+from .dependencies.dependencies import dependency_map
 from .dependencies.dependency import install_dependencies
 from .lib.args import Args
 from .lib.meditor import Meditor
@@ -31,15 +32,6 @@ for audio output, please specify ensure mp3 in output name
     medipack trim inp.mp3 -s 0:30 -e 1:40 -o output.mp3     (WORKS)
 '''
 
-
-dependency_map = {
-    'register-python-argcomplete':{
-        'ubuntu':'sudo apt install python-argcomplete',
-    },
-    'ffmpeg':{
-        'ubuntu':'sudo apt install ffmpeg',
-    },
-}
 
 def main():
     parser = Args.get_parser()
