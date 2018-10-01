@@ -90,10 +90,20 @@ class Args:
 
         resize_parser = subparsers.add_parser('resize')
         resize_parser.add_argument("-q", "--quality",
-                                    type=int,default=100,
+                                    type=int,default=50,
                                     help="output video quality (on scale of 100)")
         resize_parser.add_argument("-o", "--output",
                                     help="output file name, ex: output.mp4")
+
+
+        extract_parser = subparsers.add_parser('extract')
+        extract_group = extract_parser.add_mutually_exclusive_group(required=True)
+        extract_group.add_argument("-v","--video",
+                                    action='store_true')
+        extract_group.add_argument("-a","--audio",
+                                    action='store_true')
+        extract_parser.add_argument("-o", "--output",
+                                    help="output file name")
 
 
         autocomplete(parser)

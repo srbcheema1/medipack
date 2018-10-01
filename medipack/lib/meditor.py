@@ -13,6 +13,19 @@ class Meditor:
         dur = x.index('Duration:') + 1
         return x[dur].split('.')[0]
 
+    def extract_audio(inp,out):
+        video_codec = " "
+        audio_codec =  " "
+        exec_command = 'ffmpeg -i ' + str(inp) + video_codec + audio_codec + out
+        Colour.print(exec_command,Colour.GREEN)
+        os.system(exec_command)
+
+    def extract_video(inp,out):
+        video_codec = " -c:v copy "
+        audio_codec =  " -an "
+        exec_command = 'ffmpeg -i ' + str(inp) + video_codec + audio_codec + out
+        Colour.print(exec_command,Colour.GREEN)
+        os.system(exec_command)
 
     def video_trimmer(inp,trimmer,out):
         video_codec = " -c:v copy "

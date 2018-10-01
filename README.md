@@ -35,6 +35,7 @@ suboptions are:
     trim        trim a video/audio file from given starting point to given ending point.
     crop        crop frame window of video.
     resize      resize the file by reducing video quality. to make small size video files.
+    extract     extract audio-only or video-only file from media file
 ```
 
 ```
@@ -107,9 +108,22 @@ medipack input.mp4 resize -q 40 -o output.mp4
 medipack input.mp4 resize -q 40
 ```
 
+- To extract audio from media file
+```
+medipack input.mp4 extract --audio -o output.mp3
+medipack input.mp4 extract --audio
+```
+
+- To extract video from media file
+```
+medipack input.mp4 extract --video -o output.mp4
+medipack input.mp4 extract --video
+```
+
+
 ### Note
 
-- For audio files only trim action is supported.
+- For audio-input files only trim action is supported.
 - If you dont provide output file then the outputfile will be names as <base>_output.<extension> for base.extension file.
 - You may skip options, medikit is smart enough to detect or ask you the required options as per requirement
 - In case of any bug/issue, Please report this to srbcheema2@gmail.com. Or, even better, submit a PR to fix it!

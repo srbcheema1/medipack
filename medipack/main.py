@@ -16,7 +16,7 @@ run it as:
     to trim
         medipack inp.mp4 trim -s 0:30 -e 1:40 -o output.mp4
     to crop
-        medipack inp.mp4 crop -w 50 -l 50 -x 50 -y 50 -o output.mp4
+        medipack inp.mp4 crop -t 10 -l 10 -b 10 -r 20 -o output.mp4
     to change quality/size
         medipack inp.mp4 resize -q 50 -o output.mp4
 
@@ -41,6 +41,12 @@ def main():
         sys.exit(0)
 
     inp,out = Util.get_io(parser)
+    if(parser.action == 'extract'):
+        if(parser.audio):
+            Meditor.extract_audio(inp,out)
+        if(parser.video):
+            Meditor.extract_video(inp,out)
+        sys.exit(0)
 
     # audio
     if(out.split('.')[-1] == 'mp3'):

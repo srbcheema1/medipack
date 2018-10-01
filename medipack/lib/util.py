@@ -37,12 +37,24 @@ class Util:
             inp = parser.inp
 
         if(not parser.output):
-            out = ''.join(inp.split('.')[:-1]) + '_output.' + inp.split('.')[-1]
+            if(parser.action == 'extract' and parser.audio):
+                out = ''.join(inp.split('.')[:-1]) + '_output.mp3'
+            else:
+                out = ''.join(inp.split('.')[:-1]) + '_output.' + inp.split('.')[-1]
         else:
             out = parser.output
 
         if(os.path.exists(out)):
             Colour.print('[Warning] '+out+' file already exists',Colour.YELLOW)
+
+        if(parser.action == 'extract'):
+            out_ext = out.split('.')[-1]
+            if(parser.video and out_ext == 'mp3'):
+                Colour.print('[Warning] video output file with .mp3 extension',Colour.YELLOW)
+                sys.exit(0)
+            if(parser.audio and out_ext == 'mp4'):
+                Colour.print('[Warning] audio output file with .mp4 extension',Colour.YELLOW)
+                sys.exit(0)
         return inp,out
 
     def get_trimmer(parser):
