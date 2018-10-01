@@ -5,6 +5,7 @@
 [![HitCount](http://hits.dwyl.io/srbcheema1/medipack.svg)](http://hits.dwyl.io/srbcheema1/medipack)
 
 Medipack is `Media + Package`, A command-line tool used to `trim`, `crop`, `resize` media files.
+It can also be used to `extract` out `audio` or `video` from a media file.
 
 [![Medipack](https://raw.githubusercontent.com/srbcheema1/medipack/master/extra/medipack-52x90.png)](https://pypi.org/project/medipack/)
 
@@ -17,17 +18,22 @@ Medipack is `Media + Package`, A command-line tool used to `trim`, `crop`, `resi
 - `cd medipack`
 - `sudo python3 setup.py install`
 
-#### Build from Source
+#### Install using pip
 
 ```
 sudo python3 -m pip install medipack
-
 ```
+you may use `--user` option to install locally for user only in `~/.local/bin`
+don't forget `~/.local/bin` should be in your `PATH`. Add line `export PATH=$PATH="~/.local/bin"` in your `.bashrc`
 
 ### Usage
 
 ```
-usage: medipack [inp] [action {crop,trim,resize}] [suboptions] [-0 Output file]
+srb@srb-pc:$ medipack --help
+usage: medipack [-h] {trim,crop,resize,extract} ...
+
+positional arguments:
+  {trim,crop,resize,extract}
 ```
 
 ```
@@ -39,9 +45,8 @@ suboptions are:
 ```
 
 ```
-For more help run:
+For more help regarding suboptions run:
 
-medipack -h
 medipack trim -h
 medipack crop -h
 medipack resize -h
@@ -65,6 +70,22 @@ medipack extract -h
 
 #### trim
 
+```
+srb@srb-pc:$ medipack trim -h
+usage: medipack trim [-h] [-s START] [-e END | -t TIME] [-o OUTPUT] [inp]
+
+positional arguments:
+  inp                   input video file ex: input.mp4
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s START, --start START
+                        start time for cuting in format hh:mm:ss or mm:ss
+  -e END, --end END     end time for cuting in format hh:mm:ss or mm:ss
+  -t TIME, --time TIME  clip duration in format hh:mm:ss or mm:ss
+  -o OUTPUT, --output OUTPUT
+```
+
 - trimming a video from 01:04 to 14:08
 ```
 medipack trim input.mp4 -s 01:04 -e 14:08 -o output.mp4
@@ -80,6 +101,27 @@ medipack trim input.mp3 -s 01:04 -e 14:08 -o output.mp3
 ```
 
 #### crop
+
+```
+srb@srb-pc:$ medipack crop -h
+usage: medipack crop [-h] [-t TOP] [-b BOTTOM] [-l LEFT] [-r RIGHT]
+                     [-o OUTPUT]
+                     [inp]
+
+positional arguments:
+  inp                   input video file ex: input.mp4 (default: None)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TOP, --top TOP     percentage of screen to be chopped from top (default: 0)
+  -b BOTTOM, --bottom BOTTOM
+                        percentage of screen to be chopped from bottom (default: 0)
+  -l LEFT, --left LEFT  percentage of screen to be chopped from left (default: 0)
+  -r RIGHT, --right RIGHT
+                        percentage of screen to be chopped from right (default: 0)
+  -o OUTPUT, --output OUTPUT
+                        output file name, ex: output.mp4 (default: None)
+```
 
 - To crop the bottom right quarter of a video window
 ```
@@ -103,6 +145,20 @@ medipack crop input.mp4 -t 10 -r 20 -o output.mp4
 ```
 
 #### resize
+```
+srb@srb-pc:$ medipack resize -h
+usage: medipack resize [-h] [-q QUALITY] [-o OUTPUT] [inp]
+
+positional arguments:
+  inp                   input video file ex: input.mp4
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -q QUALITY, --quality QUALITY
+                        output video quality (on scale of 100) (default: 50)
+  -o OUTPUT, --output OUTPUT
+                        output file name, ex: output.mp4
+```
 
 - To resize a video to reduce its size
 ```
@@ -110,6 +166,22 @@ medipack resize input.mp4 -q 40 -o output.mp4
 medipack resize input.mp4 -q 40
 ```
 
+#### extract
+```
+srb@srb-pc:$ medipack extract -h
+usage: medipack extract [-h] (-v | -a) [-o OUTPUT] [inp]
+
+positional arguments:
+  inp                   input video file ex: input.mp4
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --video
+  -a, --audio
+  -o OUTPUT, --output OUTPUT
+                        output file name
+
+```
 - To extract audio from media file
 ```
 medipack extract --audio input.mp4 -o output.mp3
