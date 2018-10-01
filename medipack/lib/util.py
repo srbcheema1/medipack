@@ -68,13 +68,13 @@ class Util:
         if(not parser.action == 'trim'):
             return trimmer
 
-        if(not parser.start_time):
-            st = input('Please enter start time in format hh:mm:ss or mm:ss : (default 00:00:00) : ')
+        if(not parser.start):
+            st = input('Please enter start-time in format hh:mm:ss or mm:ss : (default 00:00:00) : ')
             st.strip()
             if(st == ''):
                 st = '00:00:00'
         else:
-            st = parser.start_time
+            st = parser.start
         st = Time.get_time(st)
         if(not st):
             Colour.print('Wrong format for start-time',Colour.RED)
@@ -83,20 +83,20 @@ class Util:
         if(parser.time):
             t = parser.time
         else:
-            if(parser.end_time):
-                et = parser.end_time
+            if(parser.end):
+                et = parser.end
             else:
                 len_file = Meditor.getLength(inp)
-                et = input('Please enter end time in format hh:mm:ss or mm:ss : (default '+len_file+') : ')
+                et = input('Please enter end-time in format hh:mm:ss or mm:ss : (default '+len_file+') : ')
                 et.strip()
                 if(et == ''): et = len_file
             et = Time.get_time(et)
             if(not et):
-                Colour.print('Wrong format for end_time',Colour.RED)
+                Colour.print('Wrong format for end-time',Colour.RED)
                 sys.exit(0)
             t = Time.get_relative_time(st,et)
             if(not t):
-                Colour.print('end_time should be greater than start_time',Colour.RED)
+                Colour.print('end-time should be greater than start-time',Colour.RED)
                 sys.exit(0)
 
         t = Time.get_time(t)

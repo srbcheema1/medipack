@@ -60,10 +60,10 @@ class Args:
         trim_parser.add_argument("inp",nargs='?',
                                 type=lambda x: Args._is_valid_file(trim_parser,x),
                                 help="input video file ex: input.mp4")
-        trim_parser.add_argument("-s", "--start_time",
+        trim_parser.add_argument("-s", "--start",
                                 help="start time for cuting in format hh:mm:ss or mm:ss")
         time_group = trim_parser.add_mutually_exclusive_group()
-        time_group.add_argument("-e", "--end_time",
+        time_group.add_argument("-e", "--end",
                                 help="end time for cuting in format hh:mm:ss or mm:ss")
         time_group.add_argument("-t", "--time",
                                 help="clip duration in format hh:mm:ss or mm:ss")
