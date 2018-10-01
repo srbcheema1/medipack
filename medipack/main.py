@@ -3,25 +3,32 @@
 
 import sys
 
+from .dependencies.dependency import install_dependencies
 from .lib.args import Args
 from .lib.meditor import Meditor
 from .lib.srbColour import Colour
 from .lib.util import Util
-from .dependencies.dependency import install_dependencies
 
 '''
 run it as:
-    medipack inp.mp4 trim -s 0:30 -e 1:40
+    medipack trim inp.mp4 -s 0:30 -e 1:40
 
     to trim
-        medipack inp.mp4 trim -s 0:30 -e 1:40 -o output.mp4
+        medipack trim inp.mp4 -s 0:30 -e 1:40 -o output.mp4
     to crop
-        medipack inp.mp4 crop -t 10 -l 10 -b 10 -r 20 -o output.mp4
+        medipack crop inp.mp4 -t 10 -l 10 -b 10 -r 20 -o output.mp4
     to change quality/size
-        medipack inp.mp4 resize -q 50 -o output.mp4
+        medipack resize inp.mp4 -q 50 -o output.mp4
 
-for audio, please specify output name using -o and extension should be mp3
-    medipack inp.mp4 trim -s 0:30 -e 1:40 -o output.mp3
+    to extract audio
+        medipack extract --audio inp.mp4 -o out.mp3
+    to extract video
+        medipack extract --video inp.mp4 -o out.mp4
+
+for audio output, please specify ensure mp3 in output name
+    medipack extract --audio inp.mp4 -o out.mp3             (WORKS)
+    medipack extract --audio inp.mp4 -o out.mp4             (WILL FAIL)
+    medipack trim inp.mp3 -s 0:30 -e 1:40 -o output.mp3     (WORKS)
 '''
 
 
@@ -42,6 +49,10 @@ def main():
 
     inp,out = Util.get_io(parser)
     if(parser.action == 'extract'):
+        if(inp.split('.')[-1] == 'mp3'):
+            message = parser.action + ' not supported for audio inpput'
+            Colour.print(message,Colour.RED)
+            sys.exit(0)
         if(parser.audio):
             Meditor.extract_audio(inp,out)
         if(parser.video):
@@ -55,7 +66,7 @@ def main():
             Colour.print(message,Colour.RED)
             sys.exit(0)
         elif(parser.action == 'trim'):
-            trimmer = Util.get_trimmer(parser)
+            trimmer = Util.get_trimmer(parser,inp)
             Meditor.aaudio_cutter(inp,trimmer,out)
         else:
             Colour.print('unknow action',Colour.YELLOW)
@@ -63,7 +74,7 @@ def main():
 
     # video
     if(parser.action == 'trim'):
-        trimmer = Util.get_trimmer(parser)
+        trimmer = Util.get_trimmer(parser,inp)
         Meditor.video_trimmer(inp,trimmer,out)
     elif(parser.action == 'crop'):
         filters = Util.get_filters(parser)

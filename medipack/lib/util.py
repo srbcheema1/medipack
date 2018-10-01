@@ -2,9 +2,10 @@ import os
 import subprocess as sp
 import sys
 
+from .args import Args
+from .meditor import Meditor
 from .srbColour import Colour
 from .time import Time
-from .args import Args
 
 class Util:
     def get_filters(parser):
@@ -55,15 +56,23 @@ class Util:
             if(parser.audio and out_ext == 'mp4'):
                 Colour.print('[Warning] audio output file with .mp4 extension',Colour.YELLOW)
                 sys.exit(0)
+
+        if(inp.split('.')[-1] == 'mp3' and out.split('.')[-1] == 'mp4'):
+            Colour.print('[Warning] input file audio output file video',Colour.YELLOW)
+            sys.exit(0)
+
         return inp,out
 
-    def get_trimmer(parser):
+    def get_trimmer(parser,inp):
         trimmer = ' '
         if(not parser.action == 'trim'):
             return trimmer
 
         if(not parser.start_time):
-            st = input('Please enter start time in format hh:mm:ss or mm:ss : ')
+            st = input('Please enter start time in format hh:mm:ss or mm:ss : (default 00:00:00) : ')
+            st.strip()
+            if(st == ''):
+                st = '00:00:00'
         else:
             st = parser.start_time
         st = Time.get_time(st)
@@ -71,20 +80,24 @@ class Util:
             Colour.print('Wrong format for start-time',Colour.RED)
             sys.exit(0)
 
-        if(not parser.time and not parser.end_time):
-            t = input('Please enter time duration in format hh:mm:ss or mm:ss : ')
-        elif(not parser.time):
-            t = parser.end_time
-            t = Time.get_time(t)
-            if(not t):
+        if(parser.time):
+            t = parser.time
+        else:
+            if(parser.end_time):
+                et = parser.end_time
+            else:
+                len_file = Meditor.getLength(inp)
+                et = input('Please enter end time in format hh:mm:ss or mm:ss : (default '+len_file+') : ')
+                et.strip()
+                if(et == ''): et = len_file
+            et = Time.get_time(et)
+            if(not et):
                 Colour.print('Wrong format for end_time',Colour.RED)
                 sys.exit(0)
-            t = Time.get_relative_time(st,t)
+            t = Time.get_relative_time(st,et)
             if(not t):
                 Colour.print('end_time should be greater than start_time',Colour.RED)
                 sys.exit(0)
-        else:
-            t = parser.time
 
         t = Time.get_time(t)
         if(not t):

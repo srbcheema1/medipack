@@ -20,7 +20,7 @@ Medipack is `Media + Package`, A command-line tool used to `trim`, `crop`, `resi
 #### Build from Source
 
 ```
-sudo python3 -m pip install --user medipack
+sudo python3 -m pip install medipack
 
 ```
 
@@ -45,6 +45,7 @@ medipack -h
 medipack trim -h
 medipack crop -h
 medipack resize -h
+medipack extract -h
 ```
 
 
@@ -58,6 +59,7 @@ medipack resize -h
 - trim
 - crop
 - resize
+- extract
 
 ### Examples
 
@@ -65,66 +67,66 @@ medipack resize -h
 
 - trimming a video from 01:04 to 14:08
 ```
-medipack input.mp4 -s 01:04 -e 14:08 -o output.mp4
-medipack input.mp4 -s 01:04 -t 13:04 -o output.mp4
-medipack input.mp4 -s 01:04 -e 14:08
-medipack input.mp4 -s 01:04 -t 13:04
-medipack input.mp4 trim
+medipack trim input.mp4 -s 01:04 -e 14:08 -o output.mp4
+medipack trim input.mp4 -s 01:04 -t 13:04 -o output.mp4
+medipack trim input.mp4 -s 01:04 -e 14:08
+medipack trim input.mp4 -s 01:04 -t 13:04
+medipack trim input.mp4
 medipack trim
 ```
 - trimming an audio from 01:04 to 14:08
 ```
-medipack input.mp3 -s 01:04 -e 14:08 -o output.mp3
+medipack trim input.mp3 -s 01:04 -e 14:08 -o output.mp3
 ```
 
 #### crop
 
 - To crop the bottom right quarter of a video window
 ```
-medipack input.mp4 crop -t 50 -l 50 -o output.mp4
-medipack input.mp4 crop -t 50 -l 50
+medipack crop input.mp4 -t 50 -l 50 -o output.mp4
+medipack crop input.mp4 -t 50 -l 50
 ```
 
 - To crop away top 10% of area
 ```
-medipack input.mp4 crop -t 10 -o output.mp4
+medipack crop input.mp4 -t 10 -o output.mp4
 ```
 
 - To crop away right 20% of the area
 ```
-medipack input.mp4 crop -r 20 -o output.mp4
+medipack crop input.mp4 -r 20 -o output.mp4
 ```
 
 - To crop away top 10% of area and right 20% of the area
 ```
-medipack input.mp4 crop -t 10 -r 20 -o output.mp4
+medipack crop input.mp4 -t 10 -r 20 -o output.mp4
 ```
 
 #### resize
 
 - To resize a video to reduce its size
 ```
-medipack input.mp4 resize -q 40 -o output.mp4
-medipack input.mp4 resize -q 40
+medipack resize input.mp4 -q 40 -o output.mp4
+medipack resize input.mp4 -q 40
 ```
 
 - To extract audio from media file
 ```
-medipack input.mp4 extract --audio -o output.mp3
-medipack input.mp4 extract --audio
+medipack extract --audio input.mp4 -o output.mp3
+medipack extract --audio input.mp4
 ```
 
 - To extract video from media file
 ```
-medipack input.mp4 extract --video -o output.mp4
-medipack input.mp4 extract --video
+medipack extract input.mp4 --video -o output.mp4
+medipack extract input.mp4 --video
 ```
 
 
 ### Note
 
 - For audio-input files only trim action is supported.
-- If you dont provide output file then the outputfile will be names as <base>_output.<extension> for base.extension file.
+- If you dont provide output file then the outputfile will be names as <base>_output.<extension> for base.extension file. [except `extract` option in this output file will get name .mp3 by default]
 - You may skip options, medikit is smart enough to detect or ask you the required options as per requirement
 - In case of any bug/issue, Please report this to srbcheema2@gmail.com. Or, even better, submit a PR to fix it!
 

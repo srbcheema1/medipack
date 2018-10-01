@@ -22,8 +22,8 @@ class Time:
 
     def get_relative_time(st,et):
         # just for safety
-        st = get_time(st)
-        et = get_time(et)
+        st = Time.get_time(st)
+        et = Time.get_time(et)
 
         st = st.split(':')
         sh,sm,ss = st

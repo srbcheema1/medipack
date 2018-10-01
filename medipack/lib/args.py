@@ -49,13 +49,13 @@ class Args:
 
     def get_parser():
         parser = ArgumentParser()
-        parser.add_argument("inp",nargs='?',
-                            type=lambda x: Args._is_valid_file(trim_parser,x),
-                            help="input video file ex: input.mp4")
         subparsers = parser.add_subparsers(dest='action')
 
 
         trim_parser = subparsers.add_parser('trim')
+        trim_parser.add_argument("inp",nargs='?',
+                                type=lambda x: Args._is_valid_file(trim_parser,x),
+                                help="input video file ex: input.mp4")
         trim_parser.add_argument("-s", "--start_time",
                                 help="start time for cuting in format hh:mm:ss or mm:ss")
         time_group = trim_parser.add_mutually_exclusive_group()
@@ -68,6 +68,9 @@ class Args:
 
 
         crop_parser = subparsers.add_parser('crop')
+        crop_parser.add_argument("inp",nargs='?',
+                                type=lambda x: Args._is_valid_file(trim_parser,x),
+                                help="input video file ex: input.mp4")
         crop_parser.add_argument("-t", "--top",
                                 default=0,
                                 type=lambda x: Args._is_valid_percent(crop_parser,x),
@@ -89,6 +92,9 @@ class Args:
 
 
         resize_parser = subparsers.add_parser('resize')
+        resize_parser.add_argument("inp",nargs='?',
+                                    type=lambda x: Args._is_valid_file(trim_parser,x),
+                                    help="input video file ex: input.mp4")
         resize_parser.add_argument("-q", "--quality",
                                     type=int,default=50,
                                     help="output video quality (on scale of 100)")
@@ -97,6 +103,9 @@ class Args:
 
 
         extract_parser = subparsers.add_parser('extract')
+        extract_parser.add_argument("inp",nargs='?',
+                                    type=lambda x: Args._is_valid_file(trim_parser,x),
+                                    help="input video file ex: input.mp4")
         extract_group = extract_parser.add_mutually_exclusive_group(required=True)
         extract_group.add_argument("-v","--video",
                                     action='store_true')
