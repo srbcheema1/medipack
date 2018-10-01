@@ -2,7 +2,7 @@ import os
 import sys
 
 try:
-    from argparse import ArgumentParser
+    import argparse
     from argcomplete import autocomplete
 except:
     err = """
@@ -48,7 +48,11 @@ class Args:
 
 
     def get_parser():
-        parser = ArgumentParser()
+        class HelpFormatter(argparse.ArgumentDefaultsHelpFormatter, argparse.RawTextHelpFormatter):
+            pass
+
+        parser = argparse.ArgumentParser(formatter_class=HelpFormatter)
+        parser = argparse.ArgumentParser()
         subparsers = parser.add_subparsers(dest='action')
 
 
@@ -67,7 +71,7 @@ class Args:
                                 help="output file name, ex: output.mp4")
 
 
-        crop_parser = subparsers.add_parser('crop')
+        crop_parser = subparsers.add_parser('crop',formatter_class=HelpFormatter)
         crop_parser.add_argument("inp",nargs='?',
                                 type=lambda x: Args._is_valid_file(trim_parser,x),
                                 help="input video file ex: input.mp4")
@@ -97,7 +101,7 @@ class Args:
                                     help="input video file ex: input.mp4")
         resize_parser.add_argument("-q", "--quality",
                                     type=int,default=50,
-                                    help="output video quality (on scale of 100)")
+                                    help="output video quality (on scale of 100) (default: 50)")
         resize_parser.add_argument("-o", "--output",
                                     help="output file name, ex: output.mp4")
 

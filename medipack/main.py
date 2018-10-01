@@ -19,7 +19,7 @@ run it as:
         medipack crop inp.mp4 -t 10 -l 10 -b 10 -r 20 -o output.mp4
     to change quality/size
         medipack resize inp.mp4 -q 50 -o output.mp4
-
+        medipack resize inp.mp4
     to extract audio
         medipack extract --audio inp.mp4 -o out.mp3
     to extract video
