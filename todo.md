@@ -1,1 +1,3 @@
 - add gifs
+- add support for creating gifs
+- make a gui
