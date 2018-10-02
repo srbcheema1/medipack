@@ -1,0 +1,21 @@
+language: python
+python:
+    - '3.5'
+
+sudo: true
+
+matrix:
+    - os: linux
+      env:
+      global:
+          - HELLO='hello world'
+          #- PIP_INSTALL="pip3 install"
+
+
+script:
+  #- "$PIP_INSTALL" pytest
+  - python3 -m pip install setuptools
+  - python3 setup.py sdist bdist
+  - python3 setup.py install
+  - medipack --help
+  - pytest
