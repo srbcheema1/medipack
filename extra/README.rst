@@ -34,50 +34,6 @@ As a Python package
 
     sudo pip3 install --user medipack
 
-Usage
-^^^^^
-
-::
-
-    usage: medipack [inp] [action {crop,trim,resize}] [suboptions] [-0 Output file]
-
-
-
-
-
-Examples
-^^^^^^^^
-
--  Trim a video with given starting and ending point
-
-   ::
-
-       medipack input.mp4 trim -s 01:04 -e 14:08 -o output.mp4
-
--  Trim a video with given starting point and clip length
-
-   ::
-
-       medipack input.mp4 trim -s 01:04 -t 13:04 -o output.mp4
-
--  Trim an audio file with given starting and ending point
-
-   ::
-
-       medipack input.mp3 trim -s 01:04 -e 14:04 -o output.mp3
-
--  Resize a video with quality 50%
-
-   ::
-
-       medipack input.mp4 resize -q 50
-
--  Crop a video and get lower-bottom quarter
-
-   ::
-
-       medipack input.mp4 crop -x 50 -y 50 -w 50 -l 50 -o output.mp4
-
 
 Note :
 ''''''
