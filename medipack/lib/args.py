@@ -120,5 +120,9 @@ class Args:
 
 
         autocomplete(parser)
-        parser = parser.parse_args()
-        return parser
+        parsed_args = parser.parse_args()
+        if(not parsed_args.action):
+            Colour.print('requires atleast one command line argument',Colour.RED)
+            parser.print_help(sys.stderr)
+            sys.exit(1)
+        return parsed_args
