@@ -73,7 +73,7 @@ class Args:
 
         crop_parser = subparsers.add_parser('crop',formatter_class=HelpFormatter)
         crop_parser.add_argument("inp",nargs='?',
-                                type=lambda x: Args._is_valid_file(trim_parser,x),
+                                type=lambda x: Args._is_valid_file(crop_parser,x),
                                 help="input video file ex: input.mp4")
         crop_parser.add_argument("-t", "--top",
                                 default=0,

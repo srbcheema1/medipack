@@ -24,7 +24,7 @@ It can also be used to `extract` out `audio` or `video` from a media file.
 sudo python3 -m pip install medipack
 ```
 you may use `--user` option to install locally for user only in `~/.local/bin`
-don't forget `~/.local/bin` should be in your `PATH`. Add line `export PATH=$PATH="~/.local/bin"` in your `.bashrc`
+don't forget `~/.local/bin` should be in your `PATH`. Add line `export PATH=$PATH:"~/.local/bin"` in your `.bashrc`
 
 ### Usage
 
@@ -205,10 +205,10 @@ medipack extract input.mp4 --video
 
 ### Contact / Social Media
 
-[![Github](https://raw.githubusercontent.com/srbcheema1/medipack/master/extra/github.png)](https://github.com/srbcheema1/)
-[![LinkedIn](https://raw.githubusercontent.com/srbcheema1/medipack/master/extra/linkedin-48x48.png)](https://www.linkedin.com/in/srbcheema1/)
-[![Facebook](https://raw.githubusercontent.com/srbcheema1/medipack/master/extra/fb.png)](https://www.facebook.com/srbcheema/)
+[![Github](https://raw.githubusercontent.com/srbcheema1/CheemaFy/master/myPlugins/extra_things/png_images/social/github.png)](https://github.com/srbcheema1/)
+[![LinkedIn](https://raw.githubusercontent.com/srbcheema1/CheemaFy/master/myPlugins/extra_things/png_images/social/linkedin-48x48.png)](https://www.linkedin.com/in/srbcheema1/)
+[![Facebook](https://raw.githubusercontent.com/srbcheema1/CheemaFy/master/myPlugins/extra_things/png_images/social/fb.png)](https://www.facebook.com/srbcheema/)
 
-### Development by
+### Developed by
 
 Developer / Author: [Srb Cheema](https://github.com/srbcheema1/)
