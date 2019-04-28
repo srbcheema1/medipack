@@ -3,6 +3,8 @@
 
 import sys
 
+from . import __mod_name__, __version__
+
 from .dependencies.dependencies import dependency_map
 from .dependencies.dependency import install_dependencies
 from .lib.args import Args
@@ -37,7 +39,12 @@ def main():
     parser = Args.get_parser()
     if(not install_dependencies(dependency_map)):
         print('please install the required dependencies')
-        sys.exit(0)
+        sys.exit(1)
+
+    if parser.version:
+        print(__mod_name__+'=='+__version__)
+        sys.exit()
+
 
     inp,out = Util.get_io(parser)
     if(parser.action == 'extract'):

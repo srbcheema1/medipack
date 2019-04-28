@@ -51,10 +51,14 @@ class Args:
         class HelpFormatter(argparse.ArgumentDefaultsHelpFormatter, argparse.RawTextHelpFormatter):
             pass
 
-        parser = argparse.ArgumentParser(formatter_class=HelpFormatter)
+        # parser = argparse.ArgumentParser(formatter_class=HelpFormatter)
         parser = argparse.ArgumentParser()
-        subparsers = parser.add_subparsers(dest='action')
 
+        parser.add_argument("-v","--version",
+                            action='store_true',
+                            help='Display version number')
+
+        subparsers = parser.add_subparsers(dest='action')
 
         trim_parser = subparsers.add_parser('trim')
         trim_parser.add_argument("inp",nargs='?',
