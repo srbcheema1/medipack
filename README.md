@@ -10,30 +10,75 @@ It can also be used to `extract` out `audio` or `video` from a media file.
 [![Medipack](https://raw.githubusercontent.com/srbcheema1/medipack/master/extra/medipack-52x90.png)](https://pypi.org/project/medipack/)
 
 
+
 ### Installation
 
-#### Build from Source
-
-- `git clone https://github.com/srbcheema1/medipack`
-- `cd medipack`
-- `sudo python3 setup.py install`
-
-#### Install using pip
+#### Install using pip (Recommended)
 
 ```
 sudo python3 -m pip install medipack
 ```
+
 you may use `--user` option to install locally for user only in `~/.local/bin`
+```
+python3 -m pip install medipack --user
+```
 don't forget `~/.local/bin` should be in your `PATH`. Add line `export PATH=$PATH:"~/.local/bin"` in your `.bashrc`
 
+#### Build from Source
+
+- Clone the repository and checkout to stable commit
+```
+- git clone https://github.com/srbcheema1/medipack
+- cd medipack
+- git checkout <latest_version say: v0.0.x>
+- `python3 setup.py install --user`
+```
+
+- install requirements
+```
+python3 -m pip install --user -r requirements.txt
+```
+- Install Medipack
+```
+python3 setup.py install --user
+```
+
+#### Verify installation
+- check for working
+```
+medipack -h
+```
+- if it displays help message you are ready to go.
+
+
+#### troubleshooting
+- In case `medipack -h` is not working, ensure that binary path is in PATH.
+Add line `export PATH=$PATH:"~/.local/bin"` in your `~/.bashrc` or `~/.zshrc`.
+
+- bash users run these commands
+```
+echo export PATH="$PATH":"~/.local/bin" >> ~/.bashrc
+source ~/.bashrc
+```
+- zsh users run these commands
+```
+echo export PATH="$PATH":"~/.local/bin" >> ~/.zshrc
+source ~/.zshrc
+
+```
 ### Usage
 
 ```
 srb@srb-pc:$ medipack --help
-usage: medipack [-h] {trim,crop,resize,extract} ...
+usage: medipack.py [-h] [-v] {trim,crop,resize,extract} ...
 
 positional arguments:
   {trim,crop,resize,extract}
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         Display version number
 ```
 
 ```
@@ -209,6 +254,7 @@ medipack extract input.mp4 --video
 [![LinkedIn](https://raw.githubusercontent.com/srbcheema1/CheemaFy/master/myPlugins/extra_things/png_images/social/linkedin-48x48.png)](https://www.linkedin.com/in/srbcheema1/)
 [![Facebook](https://raw.githubusercontent.com/srbcheema1/CheemaFy/master/myPlugins/extra_things/png_images/social/fb.png)](https://www.facebook.com/srbcheema/)
 
-### Developed by
+
+### Development by
 
 Developer / Author: [Srb Cheema](https://github.com/srbcheema1/)
