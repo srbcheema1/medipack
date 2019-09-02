@@ -23,7 +23,7 @@ class Args:
             message = 'Sum of value of left and right crop arguments should be from 0 to 99'
             Colour.print(message,Colour.RED)
             sys.exit(0)
-        if(parser.left + parser.right >= 100):
+        if(parser.top + parser.bottom >= 100):
             message = 'Sum of value of top and bottom crop arguments should be from 0 to 99'
             Colour.print(message,Colour.RED)
             sys.exit(0)

@@ -21,7 +21,7 @@ class Util:
         crop_args['y_point'] = str(parser.top/100)
 
         crop_args['width'] = str(1- (parser.left/100) - (parser.right/100))
-        crop_args['height'] = str(1 - (parser.top/100) - (parser.down/100))
+        crop_args['height'] = str(1 - (parser.top/100) - (parser.bottom/100))
 
         filters = ' -filter:v "crop=in_w*'+crop_args['width']+':in_h*'+crop_args['height']+ \
             ':in_w*'+crop_args['x_point']+':in_h*'+crop_args['y_point']+'" '
