@@ -48,7 +48,7 @@ def main():
 
     inp,out = Util.get_io(parser)
     if(parser.action == 'extract'):
-        if(inp.split('.')[-1] == 'mp3'):
+        if(inp.split('.')[-1] == 'mp3"'):
             message = parser.action + ' not supported for audio inpput'
             Colour.print(message,Colour.RED)
             sys.exit(0)
@@ -59,7 +59,7 @@ def main():
         sys.exit(0)
 
     # audio
-    if(out.split('.')[-1] == 'mp3'):
+    if(out.split('.')[-1] == 'mp3"'):
         if (parser.action in ['crop','resize']):
             message = parser.action + ' not supported for mp3 output'
             Colour.print(message,Colour.RED)

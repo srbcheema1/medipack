@@ -61,6 +61,8 @@ class Util:
             Colour.print('[Warning] input file audio output file video',Colour.YELLOW)
             sys.exit(0)
 
+        inp = '"' + inp + '"'
+        out = '"' + out + '"'
         return inp,out
 
     def get_trimmer(parser,inp):
